@@ -41,8 +41,8 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Suchitra Academy",
-  description: "Suchitra Academy homepage",
+  title: "Sri Chaitanya Schools",
+  description: "Sri Chaitanya Schools homepage",
 };
 
 export default function RootLayout({
