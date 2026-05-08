@@ -150,8 +150,8 @@ const studentStories = [
   {
     name: "Shardul J.",
     role: "Competitive Scholar",
-    thumb: "/hero-banners/home/1.jpeg",
-    image: "/hero-banners/home/1.jpeg",
+    thumb: "/imageSection/1.webp",
+    image: "/imageSection/10.jpeg",
     quoteTitle: "Focused Learner to Confident Achiever",
     quote:
       "The academic discipline and supportive mentors at Sri Chaitanya helped me stay consistent, improve my performance, and build confidence for bigger goals.",
@@ -159,8 +159,8 @@ const studentStories = [
   {
     name: "Anand B.",
     role: "Future Engineer",
-    thumb: "/hero-banners/home/2.jpeg",
-    image: "/hero-banners/home/2.jpeg",
+    thumb: "/imageSection/2.jfif",
+    image: "/imageSection/11.jpeg",
     quoteTitle: "Aspiring Engineer with a Strong Foundation",
     quote:
       "I gained clarity, routine, and the kind of academic preparation that helped me take on competitive exams with a stronger mindset.",
@@ -168,8 +168,8 @@ const studentStories = [
   {
     name: "games",
     role: "Chess Compidition",
-    thumb: "/hero-banners/home/4.png",
-    image: "/hero-banners/home/4.png",
+    thumb: "/imageSection/3.avif",
+    image: "/imageSection/12.jfif",
     quoteTitle: "From an Aspiring Athlete to an International Cricketer",
     quote:
       "Lots of credit for my success in cricket goes to the school environment that helped me pursue my sports career alongside my academics.",
@@ -177,8 +177,8 @@ const studentStories = [
   {
     name: "Vandana C.",
     role: "Global Research Student",
-    thumb: "/hero-banners/home/5.jpeg",
-    image: "/hero-banners/home/5.jpeg",
+    thumb: "/imageSection/4.avif",
+    image: "/imageSection/9.webp",
     quoteTitle: "From Curiosity to Global Exposure",
     quote:
       "The culture of mentorship, teamwork, and disciplined learning encouraged me to aim higher and explore new academic pathways with confidence.",
@@ -188,31 +188,31 @@ const studentStories = [
 const campusGalleryItems = [
   {
     title: "Baby League",
-    image: "/hero-banners/home/1.jpeg",
+    image: "/blog/1.jpeg",
     span: "lg:col-span-2 lg:row-span-2",
     aspect: "aspect-[4/3]",
   },
   {
     title: "Academic Expo",
-    image: "/hero-banners/home/2.jpeg",
+    image: "/blog/2.png",
     span: "lg:col-span-1 lg:row-span-2",
     aspect: "aspect-[3/4]",
   },
   {
     title: "Cultural Showcase",
-    image: "/hero-banners/home/5.jpeg",
+    image: "/blog/3.jpg",
     span: "lg:col-span-2 lg:row-span-3",
     aspect: "aspect-[4/5]",
   },
   {
     title: "Creative Learning",
-    image: "/hero-banners/home/3.jpeg",
+    image: "/blog/4.jpg",
     span: "lg:col-span-1 lg:row-span-1",
     aspect: "aspect-[4/3]",
   },
   {
     title: "Sports Spirit",
-    image: "/hero-banners/home/4.jpeg",
+    image: "/blog/5.webp",
     span: "lg:col-span-2 lg:row-span-1",
     aspect: "aspect-[16/7]",
   },
@@ -355,18 +355,18 @@ const whyChooseItems = [
 ];
 
 const spotlightGalleryImages = [
-  "/hero-banners/home/1.jpeg",
-  "/hero-banners/home/2.jpeg",
-  "/hero-banners/home/5.jpeg",
-  "/hero-banners/home/3.jpeg",
-  "/hero-banners/home/4.jpeg",
-  "/hero-banners/home/4.png",
-  "/hero-banners/home/2.jpeg",
-  "/hero-banners/home/5.jpeg",
-  "/hero-banners/home/1.jpeg",
-  "/hero-banners/home/3.jpeg",
-  "/hero-banners/home/4.png",
-  "/hero-banners/home/2.jpeg",
+  "/imageSection/1.webp",
+  "/imageSection/2.jfif",
+  "/imageSection/3.avif",
+  "/imageSection/4.avif",
+  "/imageSection/5.jpg",
+  "/imageSection/6.webp",
+  "/imageSection/7.jfif",
+  "/imageSection/8.jfif",
+  "/imageSection/9.webp",
+  "/imageSection/10.jpeg",
+  "/imageSection/11.jpeg",
+  "/imageSection/12.jfif",
 ];
 
 const footerQuickLinks = [
@@ -666,7 +666,7 @@ export default function Home() {
   const closeMenu = () => setIsMenuOpen(false);
   const activeSlide = heroSlides[currentSlide];
   const activeStory = studentStories[activeStoryIndex];
-  const headerIsSolid = isScrolled || isMenuOpen;
+  const headerIsSolid = true;
   const headerTextClass = headerIsSolid ? "text-black" : "!text-white";
   const logoTitleClass = headerIsSolid ? "text-[#379BD3]" : "text-white";
   const logoSubtitleClass = headerIsSolid ? "text-[#2ECAAD]" : "text-white/92";
@@ -959,126 +959,48 @@ export default function Home() {
         ) : null}
       </header>
 
-      <section className="relative min-h-screen overflow-hidden bg-[#0f1724] text-white">
-        <div className="absolute inset-0">
-          {heroSlides.map((slide, index) => (
-            <div
-              key={slide.image}
-              className={`absolute inset-0 transition-all duration-[1200ms] ease-out ${
-                index === currentSlide
-                  ? "scale-100 opacity-100"
-                  : "scale-[1.04] opacity-0"
-              }`}
-            >
-              <Image
-                src={slide.image}
-                alt={slide.description}
-                fill
-                priority={index === 0}
-                sizes="100vw"
-                className="object-cover blur-[3px]"
-              />
+      <section className="relative w-full overflow-hidden bg-white px-2 pb-5 pt-7 text-white sm:px-2.5 sm:pt-9 lg:px-3 lg:pt-11">
+        <div className="mx-auto w-full max-w-[1860px] rounded-[30px] border border-[#dce8f3] bg-[linear-gradient(180deg,#ffffff_0%,#f8fcff_100%)] p-3 shadow-[0_22px_70px_rgba(17,34,68,0.10)] sm:p-4 lg:p-5">
+          <div className="relative aspect-[1904/628] overflow-hidden rounded-[24px] bg-[radial-gradient(circle_at_top,#f7fdff_0%,#eef9ff_24%,#ffffff_58%,#eefaf8_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-[72px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0)_100%)]" />
+            <div className="absolute inset-0">
+              {heroSlides.map((slide, index) => (
+                <div
+                  key={slide.image}
+                  className={`absolute inset-0 p-4 pt-6 transition-all duration-[1200ms] ease-out sm:p-5 sm:pt-7 lg:p-6 lg:pt-8 ${
+                    index === currentSlide
+                      ? "scale-100 opacity-100"
+                      : "scale-[1.02] opacity-0"
+                  }`}
+                >
+                  <div className="relative h-full w-full overflow-hidden rounded-[18px] border border-white/65 bg-white/30 shadow-[0_18px_40px_rgba(41,93,140,0.08)] backdrop-blur-[2px]">
+                    <Image
+                      src={slide.image}
+                      alt={slide.description}
+                      fill
+                      priority={index === 0}
+                      sizes="100vw"
+                      className="object-contain object-center"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.52)_34%,rgba(0,0,0,0.22)_68%,rgba(0,0,0,0.06)_100%)]" />
-        </div>
 
-        <div className="relative mx-auto flex min-h-screen w-full max-w-[1510px] items-center px-2 pb-10 pt-36 sm:px-2.5 lg:px-3">
-          <div className="grid w-full items-center">
-            <div className="max-w-[760px]">
-              <h1
-                key={`hero-title-${currentSlide}`}
-                style={{
-                  fontFamily: "var(--font-plus-jakarta-sans)",
-                }}
-                className="max-w-[880px] text-[42px] font-medium leading-[0.95] tracking-[-0.055em] text-white sm:text-[54px] lg:text-[60px]"
-              >
-                {activeSlide.titleLines.map((line, lineIndex) => (
-                  <span
-                    key={`${currentSlide}-${lineIndex}`}
-                    style={{
-                      animation: `heroLineReveal 780ms cubic-bezier(0.16,1,0.3,1) ${lineIndex * 110}ms both`,
-                    }}
-                    className="block"
-                  >
-                    {line.map((part, partIndex) => (
-                      <span
-                        key={`${currentSlide}-${lineIndex}-${partIndex}`}
-                        className={
-                          part.bold
-                            ? "font-extrabold tracking-[0.01em]"
-                            : "font-normal"
-                        }
-                      >
-                        {part.text}
-                      </span>
-                    ))}
-                  </span>
-                ))}
-              </h1>
-              <p
-                key={`hero-description-${currentSlide}`}
-                style={{
-                  animation:
-                    "heroTextReveal 920ms cubic-bezier(0.16,1,0.3,1) 110ms both",
-                }}
-                className="mt-8 max-w-[640px] text-[16px] leading-8 text-white/78 sm:text-[18px]"
-              >
-                {activeSlide.description}
-              </p>
-
-              <div
-                key={`hero-actions-${currentSlide}`}
-                style={{
-                  animation:
-                    "heroTextReveal 980ms cubic-bezier(0.16,1,0.3,1) 190ms both",
-                }}
-                className="mt-10 flex flex-wrap items-center gap-5"
-              >
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-3 rounded-[6px] bg-[#40B9E9] px-6 py-4 text-[14px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#379BD3]"
-                >
-                  Explore Admissions
-                  <span aria-hidden="true">→</span>
-                </Link>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setCurrentSlide(
-                      (currentSlide - 1 + heroSlides.length) % heroSlides.length,
-                    )
-                  }
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/22 bg-white/8 text-white backdrop-blur-md transition-colors hover:bg-white/16"
-                >
-                  <span aria-hidden="true">←</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setCurrentSlide((currentSlide + 1) % heroSlides.length)
-                  }
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/22 bg-white/8 text-white backdrop-blur-md transition-colors hover:bg-white/16"
-                >
-                  <span aria-hidden="true">→</span>
-                </button>
-              </div>
-
-              <div className="mt-14 flex items-center gap-4">
-                {heroSlides.map((slide, index) => (
-                  <button
-                    key={slide.image}
-                    type="button"
-                    aria-label={`Go to slide ${index + 1}`}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`transition-all ${
-                      index === currentSlide
-                        ? "h-[3px] w-16 bg-white"
-                        : "h-[3px] w-9 bg-white/35 hover:bg-white/65"
-                    }`}
-                  />
-                ))}
-              </div>
+            <div className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-3 sm:bottom-9 lg:bottom-11">
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide.image}
+                type="button"
+                aria-label={`Go to slide ${index + 1}`}
+                onClick={() => setCurrentSlide(index)}
+                className={`rounded-full border border-white/50 transition-all duration-300 ${
+                  index === currentSlide
+                    ? "h-[10px] w-14 border-white bg-white shadow-[0_8px_18px_rgba(255,255,255,0.35)]"
+                    : "h-[10px] w-[10px] bg-white/35 hover:bg-white/65"
+                }`}
+              />
+            ))}
             </div>
           </div>
         </div>
@@ -1132,6 +1054,64 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white px-2 pb-28 pt-2 sm:px-2.5 sm:pb-24 sm:pt-12 lg:px-3 lg:pb-28 lg:pt-14">
+        <div className="mx-auto w-full max-w-[1510px]">
+          <div
+            data-section-reveal
+            className="section-reveal-up"
+            style={{ animationDelay: "180ms" }}
+          >
+            <h3
+              data-section-reveal
+              style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+              className="section-reveal-up text-center text-[30px] font-medium tracking-[-0.03em] text-[#1f2734] sm:text-[38px]"
+            >
+              Explore Admission Details in Your City
+            </h3>
+
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#171717] text-[24px] text-white transition-colors hover:bg-black/85"
+                onClick={handleFeaturedCityPrev}
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+
+              <div className="grid min-w-0 flex-1 gap-4 sm:grid-cols-3 xl:grid-cols-7">
+                {visibleFeaturedCities.map((city, index) => (
+                  <article
+                    key={`${city.name}-${featuredCityStartIndex}-${index}`}
+                    className="text-center"
+                  >
+                    <div className="relative mx-auto h-[96px] w-[116px] overflow-hidden rounded-[16px] bg-[#379BD3] shadow-[0_12px_26px_rgba(34,43,64,0.12)]">
+                      <Image
+                        src={city.image}
+                        alt={city.name}
+                        fill
+                        sizes="116px"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(125,16,26,0.25)_0%,rgba(125,16,26,0.58)_100%)]" />
+                    </div>
+                    <p className="mt-3 text-[16px] font-semibold text-[#1f2734]">
+                      {city.name}
+                    </p>
+                  </article>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#171717] text-[24px] text-white transition-colors hover:bg-black/85"
+                onClick={handleFeaturedCityNext}
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="bg-white px-2 pb-18 pt-4 sm:px-2.5 sm:pb-24 lg:px-3 lg:pb-28">
         <div className="mx-auto w-full max-w-[1510px]">
           <div className="mx-auto max-w-[1180px] text-center">
@@ -1145,7 +1125,7 @@ export default function Home() {
               <span className="block font-extrabold">
                 Educational Experience with peers
               </span>
-              <span className="block font-extrabold">from 26 states</span>
+              <span className="block font-extrabold">accross states</span>
             </h2>
           </div>
 
@@ -1157,7 +1137,7 @@ export default function Home() {
                 <button
                   key={pillar.label}
                   type="button"
-                  onClick={() => setActiveAboutPillarIndex(index)}
+                  onMouseOver={() => setActiveAboutPillarIndex(index)}
                   className={`group relative overflow-hidden rounded-[18px] border text-left transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     isActive
                       ? "border-transparent bg-[#101726] shadow-[0_18px_50px_rgba(18,24,39,0.14)] xl:flex-[1.2]"
@@ -1288,7 +1268,7 @@ export default function Home() {
                 data-section-reveal
                 className="section-reveal-up mt-12 flex flex-wrap items-center gap-5"
               >
-                <button
+                {/* <button
                   type="button"
                   onClick={() =>
                     setActiveStoryIndex(
@@ -1310,47 +1290,42 @@ export default function Home() {
                   className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/14 text-[28px] text-white transition-colors hover:bg-white/22"
                 >
                   <span aria-hidden="true">→</span>
-                </button>
+                </button> */}
 
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-start gap-4">
                   {studentStories.map((story, index) => (
-                    <button
-                      key={story.name}
-                      type="button"
-                      onClick={() => setActiveStoryIndex(index)}
-                      className={`overflow-hidden rounded-[14px] border transition-all ${
-                        index === activeStoryIndex
-                          ? "border-white bg-white p-1"
-                          : "border-white/18 bg-white/10 p-1 hover:bg-white/16"
-                      }`}
-                    >
-                      <div className="relative h-[56px] w-[56px] overflow-hidden rounded-[10px]">
-                        <Image
-                          src={story.thumb}
-                          alt={story.name}
-                          fill
-                          sizes="56px"
-                          className="object-cover"
-                        />
-                      </div>
-                    </button>
+                    <div key={story.name} className="flex w-[72px] flex-col items-center text-center">
+                      <button
+                        type="button"
+                        onMouseOver={() => setActiveStoryIndex(index)}
+                        className={`overflow-hidden rounded-[14px] border transition-all ${
+                          index === activeStoryIndex
+                            ? "border-white bg-white p-1"
+                            : "border-white/18 bg-white/10 p-1 hover:bg-white/16"
+                        }`}
+                      >
+                        <div className="relative h-[56px] w-[56px] overflow-hidden rounded-[10px]">
+                          <Image
+                            src={story.thumb}
+                            alt={story.name}
+                            fill
+                            sizes="56px"
+                            className="object-cover"
+                          />
+                        </div>
+                      </button>
+                      <span className="mt-3 text-[12px] font-medium text-white/88">
+                        {story.name}
+                      </span>
+                    </div>
                   ))}
                 </div>
-              </div>
-
-              <div
-                data-section-reveal
-                className="section-reveal-up mt-4 flex flex-wrap gap-5 pl-[136px] text-[12px] font-medium text-white/88 sm:pl-[146px]"
-              >
-                {studentStories.map((story) => (
-                  <span key={story.name}>{story.name}</span>
-                ))}
               </div>
 
               <Link
                 data-section-reveal
                 href="/"
-              className="section-reveal-up mt-12 inline-flex items-center gap-4 rounded-[10px] bg-white px-8 py-4 text-[16px] font-semibold uppercase tracking-[0.04em] text-[#379BD3] transition-colors hover:bg-white/90"
+              className="section-reveal-up mt-12 inline-flex items-center gap-4 rounded-[10px] bg-white px-8 py-4 text-[16px] font-semibold uppercase tracking-[0.04em] !text-black transition-colors hover:bg-white/90"
               >
                 Apply Now
                 <span aria-hidden="true">→</span>
@@ -1422,7 +1397,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-2 py-18 sm:px-2.5 sm:py-24 lg:px-3 lg:py-28">
+      <section className="bg-white px-2 pb-18 pt-8 sm:px-2.5 sm:pb-24 sm:pt-12 lg:px-3 lg:pb-28 lg:pt-14">
         <div className="mx-auto w-full max-w-[1510px]">
           <div
             data-section-reveal
@@ -1534,60 +1509,6 @@ export default function Home() {
             </label>
           </div>
 
-          <div
-            data-section-reveal
-            className="section-reveal-up mt-14"
-            style={{ animationDelay: "180ms" }}
-          >
-            <h3
-              data-section-reveal
-              style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
-              className="section-reveal-up text-center text-[30px] font-medium tracking-[-0.03em] text-[#1f2734] sm:text-[38px]"
-            >
-              Explore Admission Details in Your City
-            </h3>
-
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <button
-                type="button"
-                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#171717] text-[24px] text-white transition-colors hover:bg-black/85"
-                onClick={handleFeaturedCityPrev}
-              >
-                <span aria-hidden="true">←</span>
-              </button>
-
-              <div className="grid min-w-0 flex-1 gap-4 sm:grid-cols-3 xl:grid-cols-7">
-                {visibleFeaturedCities.map((city, index) => (
-                  <article
-                    key={`${city.name}-${featuredCityStartIndex}-${index}`}
-                    className="text-center"
-                  >
-                    <div className="relative mx-auto h-[96px] w-[116px] overflow-hidden rounded-[16px] bg-[#379BD3] shadow-[0_12px_26px_rgba(34,43,64,0.12)]">
-                      <Image
-                        src={city.image}
-                        alt={city.name}
-                        fill
-                        sizes="116px"
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(125,16,26,0.25)_0%,rgba(125,16,26,0.58)_100%)]" />
-                    </div>
-                    <p className="mt-3 text-[16px] font-semibold text-[#1f2734]">
-                      {city.name}
-                    </p>
-                  </article>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#171717] text-[24px] text-white transition-colors hover:bg-black/85"
-                onClick={handleFeaturedCityNext}
-              >
-                <span aria-hidden="true">→</span>
-              </button>
-            </div>
-          </div>
 
           <div className="mt-12 grid gap-5 xl:grid-cols-[minmax(0,1fr)_480px]">
             <article
@@ -1734,8 +1655,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className="bg-white px-2 py-18 sm:px-2.5 sm:py-24 lg:px-3 lg:py-28">
+      {/* <section className="bg-white px-2 py-18 sm:px-2.5 sm:py-24 lg:px-3 lg:py-28">
         <div className="mx-auto w-full max-w-[1510px]">
           <div className="max-w-[980px]">
             <h2
@@ -1846,7 +1766,7 @@ export default function Home() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-white px-2 pb-20 sm:px-2.5 sm:pb-24 lg:px-3 lg:pb-28">
         <div className="mx-auto w-full max-w-[1350px] overflow-hidden rounded-[12px] bg-[#232323] text-white shadow-[0_18px_40px_rgba(15,15,18,0.16)]">
@@ -1903,25 +1823,29 @@ export default function Home() {
             {spotlightGalleryImages.map((image, index) => (
               <article
                 key={`${image}-${index}`}
-                className={`relative h-[170px] w-[136px] shrink-0 overflow-hidden rounded-[2px] border-[4px] border-white bg-white shadow-[0_18px_34px_rgba(0,0,0,0.18)] sm:h-[230px] sm:w-[176px] lg:h-[286px] lg:w-[220px] ${
+                className={`group relative h-[174px] w-[138px] shrink-0 overflow-hidden rounded-[14px] border border-[#d7e4ef] bg-[linear-gradient(180deg,#ffffff_0%,#f6fbff_100%)] p-[6px] shadow-[0_16px_30px_rgba(15,23,42,0.12)] sm:h-[236px] sm:w-[178px] lg:h-[292px] lg:w-[222px] ${
                   index % 4 === 0
-                    ? "-rotate-[11deg]"
+                    ? "-rotate-[9deg]"
                     : index % 4 === 1
-                      ? "rotate-[4deg]"
+                      ? "rotate-[3deg]"
                       : index % 4 === 2
-                        ? "-rotate-[5.5deg]"
-                        : "rotate-[7deg]"
-                } origin-bottom transition-transform duration-500 hover:z-10 hover:-translate-y-12 hover:rotate-0 hover:scale-[1.01] hover:shadow-[0_24px_40px_rgba(0,0,0,0.24)] ${
+                        ? "-rotate-[4deg]"
+                        : "rotate-[6deg]"
+                } origin-bottom transition-transform duration-500 hover:z-10 hover:-translate-y-10 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_28px_50px_rgba(15,23,42,0.2)] ${
                   index === 0 ? "" : "-ml-9 sm:-ml-11 lg:-ml-12"
                 }`}
               >
-                <Image
-                  src={image}
-                  alt={`Sri Chaitanya spotlight ${index + 1}`}
-                  fill
-                  sizes="220px"
-                  className="object-cover"
-                />
+                <div className="relative h-full w-full overflow-hidden rounded-[10px] bg-white">
+                  <img
+                    src={image}
+                    alt={`Sri Chaitanya spotlight ${index + 1}`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0)_24%,rgba(9,18,32,0.06)_100%)]" />
+                  <div className="absolute left-3 top-3 h-2.5 w-14 rounded-full bg-white/82 shadow-[0_4px_10px_rgba(255,255,255,0.4)]" />
+                </div>
               </article>
             ))}
           </div>
@@ -1933,7 +1857,7 @@ export default function Home() {
 
         <div className="mx-auto w-full max-w-[1510px] px-5 pt-16 sm:px-8 sm:pt-18 lg:px-10 lg:pt-20">
           <div className="grid gap-10 xl:grid-cols-[1.28fr_0.82fr_0.92fr_0.82fr]">
-            <div className="max-w-[470px]">
+            <div className="w-full max-w-none">
               <div className="flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#379BD3] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.05)]">
                   <span className="text-[18px] font-bold text-white">SC</span>
@@ -1964,6 +1888,36 @@ export default function Home() {
                 </p>
                 <p>+91 1800-123-4567</p>
                 <p>corporate@srichaitanya.edu</p>
+              </div>
+
+              <div className="mt-7 overflow-hidden rounded-[22px] border border-white/12 bg-white/[0.04] shadow-[0_14px_34px_rgba(0,0,0,0.2)]">
+                <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#40B9E9]">
+                      Campus Map
+                    </p>
+                    <p className="mt-1 text-[14px] font-medium text-white/86">
+                      Madhapur, Hyderabad
+                    </p>
+                  </div>
+                  <Link
+                    href="https://www.google.com/maps?q=Sri+Sai+Plaza,+Plot+No.+80,+Ayyappa+Society+Main+Rd,+Madhapur,+Hyderabad"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full border border-white/12 bg-white/[0.06] px-3 py-1.5 text-[12px] font-semibold text-white/88 transition-all duration-300 hover:border-[#40B9E9]/60 hover:text-white"
+                  >
+                    Open Map
+                  </Link>
+                </div>
+                <div className="relative h-[220px] w-full overflow-hidden bg-[#0b1930]">
+                  <iframe
+                    title="Sri Chaitanya Madhapur map"
+                    src="https://www.google.com/maps?q=Sri+Sai+Plaza,+Plot+No.+80,+Ayyappa+Society+Main+Rd,+Madhapur,+Hyderabad&z=15&output=embed"
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -2107,3 +2061,4 @@ export default function Home() {
     </main>
   );
 }
+
