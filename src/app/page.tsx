@@ -664,7 +664,6 @@ export default function Home() {
   }, []);
 
   const closeMenu = () => setIsMenuOpen(false);
-  const activeSlide = heroSlides[currentSlide];
   const activeStory = studentStories[activeStoryIndex];
   const headerIsSolid = true;
   const headerTextClass = headerIsSolid ? "text-black" : "!text-white";
@@ -959,46 +958,101 @@ export default function Home() {
         ) : null}
       </header>
 
-      <section className="relative w-full overflow-hidden bg-white px-2 pb-5 pt-5 sm:px-2.5 sm:pt-7 lg:px-3 lg:pt-8">
-        <div className="mx-auto w-full max-w-[1860px]">
-          <div className="relative overflow-hidden rounded-[28px] border border-[#dbe8f3] bg-white shadow-[0_18px_55px_rgba(17,34,68,0.08)]">
-            <div
-              className="flex aspect-[1904/628] w-full transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {heroSlides.map((slide, index) => (
-                <div
-                  key={slide.image}
-                  className="relative h-full w-full shrink-0"
+      <section className="relative overflow-hidden bg-white px-2 pb-6 pt-5 sm:px-2.5 sm:pb-7 sm:pt-7 lg:px-3 lg:pb-8 lg:pt-8">
+        <div className="pointer-events-none absolute left-[6%] top-10 h-40 w-40 rounded-full bg-[#40B9E9]/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 right-[7%] h-44 w-44 rounded-full bg-[#2ECAAD]/10 blur-3xl" />
+
+        <div className="relative mx-auto w-full max-w-[1860px] rounded-[34px] bg-[linear-gradient(135deg,#40B9E9_0%,#379BD3_52%,#2ECAAD_100%)] p-[1px] shadow-[0_24px_64px_rgba(17,34,68,0.12)]">
+          <div className="rounded-[33px] bg-white/95 p-3 sm:p-4 lg:p-5">
+            <div className="relative overflow-hidden rounded-[28px] bg-[#eaf7fd] shadow-[0_16px_48px_rgba(17,34,68,0.10)]">
+              <div
+                className="flex aspect-[1904/628] w-full transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {heroSlides.map((slide, index) => (
+                  <div
+                    key={slide.image}
+                    className="relative h-full w-full shrink-0"
+                  >
+                    <Image
+                      src={slide.image}
+                      alt={`Sri Chaitanya banner ${index + 1}`}
+                      fill
+                      priority={index === 0}
+                      sizes="100vw"
+                      className="object-cover object-center"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,20,38,0)_0%,rgba(8,20,38,0.18)_100%)]" />
+
+              <button
+                type="button"
+                aria-label="Previous slide"
+                onClick={() =>
+                  setCurrentSlide(
+                    (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
+                  )
+                }
+                className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:left-5 sm:h-12 sm:w-12"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className="h-5 w-5"
                 >
-                  <Image
-                    src={slide.image}
-                    alt={`Sri Chaitanya banner ${index + 1}`}
-                    fill
-                    priority={index === 0}
-                    sizes="100vw"
-                    className="object-cover object-center"
+                  <path
+                    d="M11.75 4.75 6.5 10l5.25 5.25"
+                    stroke="currentColor"
+                    strokeWidth="1.9"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                aria-label="Next slide"
+                onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
+                className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:right-5 sm:h-12 sm:w-12"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className="h-5 w-5"
+                >
+                  <path
+                    d="M8.25 4.75 13.5 10l-5.25 5.25"
+                    stroke="currentColor"
+                    strokeWidth="1.9"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <div className="absolute inset-x-0 bottom-5 flex items-center justify-center">
+                <div className="flex items-center gap-2.5 rounded-full border border-white/22 bg-[#071528]/28 px-3 py-2 backdrop-blur-md">
+                  {heroSlides.map((slide, index) => (
+                    <button
+                      key={slide.image}
+                      type="button"
+                      aria-label={`Go to slide ${index + 1}`}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`rounded-full transition-all duration-300 ${
+                        index === currentSlide
+                          ? "h-[8px] w-14 bg-white shadow-[0_8px_18px_rgba(255,255,255,0.4)]"
+                          : "h-[8px] w-[22px] bg-white/45 hover:bg-white/75"
+                      }`}
+                    />
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(10,20,38,0.12)_100%)]" />
-
-            <div className="absolute inset-x-0 bottom-5 flex items-center justify-center gap-3 sm:bottom-6 lg:bottom-7">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide.image}
-                  type="button"
-                  aria-label={`Go to slide ${index + 1}`}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? "h-[8px] w-14 bg-white shadow-[0_10px_24px_rgba(255,255,255,0.38)]"
-                      : "h-[8px] w-[24px] bg-white/45 hover:bg-white/75"
-                  }`}
-                />
-              ))}
+              </div>
             </div>
           </div>
         </div>
