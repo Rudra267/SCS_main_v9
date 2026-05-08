@@ -959,48 +959,46 @@ export default function Home() {
         ) : null}
       </header>
 
-      <section className="relative w-full overflow-hidden bg-white px-2 pb-5 pt-7 text-white sm:px-2.5 sm:pt-9 lg:px-3 lg:pt-11">
-        <div className="mx-auto w-full max-w-[1860px] rounded-[30px] border border-[#dce8f3] bg-[linear-gradient(180deg,#ffffff_0%,#f8fcff_100%)] p-3 shadow-[0_22px_70px_rgba(17,34,68,0.10)] sm:p-4 lg:p-5">
-          <div className="relative aspect-[1904/628] overflow-hidden rounded-[24px] bg-[radial-gradient(circle_at_top,#f7fdff_0%,#eef9ff_24%,#ffffff_58%,#eefaf8_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-[72px] bg-[linear-gradient(180deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0)_100%)]" />
-            <div className="absolute inset-0">
+      <section className="relative w-full overflow-hidden bg-white px-2 pb-5 pt-5 sm:px-2.5 sm:pt-7 lg:px-3 lg:pt-8">
+        <div className="mx-auto w-full max-w-[1860px]">
+          <div className="relative overflow-hidden rounded-[28px] border border-[#dbe8f3] bg-white shadow-[0_18px_55px_rgba(17,34,68,0.08)]">
+            <div
+              className="flex aspect-[1904/628] w-full transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
               {heroSlides.map((slide, index) => (
                 <div
                   key={slide.image}
-                  className={`absolute inset-0 p-4 pt-6 transition-all duration-[1200ms] ease-out sm:p-5 sm:pt-7 lg:p-6 lg:pt-8 ${
-                    index === currentSlide
-                      ? "scale-100 opacity-100"
-                      : "scale-[1.02] opacity-0"
-                  }`}
+                  className="relative h-full w-full shrink-0"
                 >
-                  <div className="relative h-full w-full overflow-hidden rounded-[18px] border border-white/65 bg-white/30 shadow-[0_18px_40px_rgba(41,93,140,0.08)] backdrop-blur-[2px]">
-                    <Image
-                      src={slide.image}
-                      alt={slide.description}
-                      fill
-                      priority={index === 0}
-                      sizes="100vw"
-                      className="object-contain object-center"
-                    />
-                  </div>
+                  <Image
+                    src={slide.image}
+                    alt={`Sri Chaitanya banner ${index + 1}`}
+                    fill
+                    priority={index === 0}
+                    sizes="100vw"
+                    className="object-cover object-center"
+                  />
                 </div>
               ))}
             </div>
 
-            <div className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-3 sm:bottom-9 lg:bottom-11">
-            {heroSlides.map((slide, index) => (
-              <button
-                key={slide.image}
-                type="button"
-                aria-label={`Go to slide ${index + 1}`}
-                onClick={() => setCurrentSlide(index)}
-                className={`rounded-full border border-white/50 transition-all duration-300 ${
-                  index === currentSlide
-                    ? "h-[10px] w-14 border-white bg-white shadow-[0_8px_18px_rgba(255,255,255,0.35)]"
-                    : "h-[10px] w-[10px] bg-white/35 hover:bg-white/65"
-                }`}
-              />
-            ))}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(10,20,38,0.12)_100%)]" />
+
+            <div className="absolute inset-x-0 bottom-5 flex items-center justify-center gap-3 sm:bottom-6 lg:bottom-7">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.image}
+                  type="button"
+                  aria-label={`Go to slide ${index + 1}`}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? "h-[8px] w-14 bg-white shadow-[0_10px_24px_rgba(255,255,255,0.38)]"
+                      : "h-[8px] w-[24px] bg-white/45 hover:bg-white/75"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
