@@ -418,7 +418,8 @@ const footerSocialLinks = [
 ];
 
 export default function Home() {
-  const legacyStatsRef = useRef<HTMLElement | null>(null);
+  const legacyStatsRef = useRef<HTMLDivElement | null>(null);
+  const legacyStatsHasAnimatedRef = useRef(false);
   const featuredCitiesPerView = 7;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
@@ -505,17 +506,17 @@ export default function Home() {
           return;
         }
 
-        if (!entry.isIntersecting) {
-          setLegacyStatsVisible(false);
-          setAnimatedLegacyCounts(legacyStatTargets.map(() => 0));
+        if (!entry.isIntersecting || legacyStatsHasAnimatedRef.current) {
           return;
         }
 
         setLegacyStatsVisible(true);
+        legacyStatsHasAnimatedRef.current = true;
+        observer.disconnect();
       },
       {
-        threshold: 0.25,
-        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.35,
+        rootMargin: "0px 0px -4% 0px",
       },
     );
 
@@ -543,7 +544,10 @@ export default function Home() {
 
       if (progress < 1) {
         frameId = window.requestAnimationFrame(animate);
+        return;
       }
+
+      setAnimatedLegacyCounts(legacyStatTargets);
     };
 
     frameId = window.requestAnimationFrame(animate);
@@ -958,15 +962,27 @@ export default function Home() {
         ) : null}
       </header>
 
-      <section className="relative overflow-hidden bg-white px-2 pb-6 pt-5 sm:px-2.5 sm:pb-7 sm:pt-7 lg:px-3 lg:pb-8 lg:pt-8">
+      <section className="relative overflow-hidden bg-transparent px-2 pb-6 pt-5 sm:px-2.5 sm:pb-7 sm:pt-7 lg:px-3 lg:pb-8 lg:pt-8">
         <div className="pointer-events-none absolute left-[6%] top-10 h-40 w-40 rounded-full bg-[#40B9E9]/10 blur-3xl" />
         <div className="pointer-events-none absolute bottom-10 right-[7%] h-44 w-44 rounded-full bg-[#2ECAAD]/10 blur-3xl" />
 
         <div className="relative mx-auto w-full max-w-[1860px] rounded-[34px] bg-[linear-gradient(135deg,#40B9E9_0%,#379BD3_52%,#2ECAAD_100%)] p-[1px] shadow-[0_24px_64px_rgba(17,34,68,0.12)]">
-          <div className="rounded-[33px] bg-white/95 p-3 sm:p-4 lg:p-5">
-            <div className="relative overflow-hidden rounded-[28px] bg-[#eaf7fd] shadow-[0_16px_48px_rgba(17,34,68,0.10)]">
+          <div className="relative rounded-[33px] bg-[linear-gradient(180deg,rgba(255,255,255,0.82)_0%,rgba(244,252,255,0.68)_100%)] p-3 backdrop-blur-[3px] sm:p-4 lg:p-5">
+            <div className="pointer-events-none absolute left-5 top-5 h-16 w-16 rounded-[20px] border border-white/55 bg-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]" />
+            <div className="pointer-events-none absolute bottom-5 right-5 h-20 w-20 rounded-full border border-white/45 bg-[#2ECAAD]/12 blur-[1px]" />
+
+            <div className="relative overflow-hidden rounded-[30px] bg-[#eaf7fd] shadow-[0_24px_58px_rgba(17,34,68,0.12)]">
+              <div className="pointer-events-none absolute inset-x-5 top-0 z-10 h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.95)_18%,rgba(255,255,255,0.95)_82%,transparent_100%)]" />
+              <div className="pointer-events-none absolute left-6 top-6 z-10 h-3 w-20 rounded-full bg-white/70 shadow-[0_4px_12px_rgba(255,255,255,0.45)]" />
+              <div className="pointer-events-none absolute right-10 top-8 z-10 hidden h-10 w-10 rotate-12 rounded-[14px] border border-white/40 bg-white/18 md:block" />
+
+              <div className="pointer-events-none absolute inset-0 z-0">
+                <div className="absolute -left-10 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-[#40B9E9]/12 blur-3xl" />
+                <div className="absolute -right-10 top-1/3 h-36 w-36 rounded-full bg-[#2ECAAD]/10 blur-3xl" />
+              </div>
+
               <div
-                className="flex aspect-[1904/628] w-full transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="relative z-[1] flex aspect-[1904/628] w-full transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {heroSlides.map((slide, index) => (
@@ -980,13 +996,15 @@ export default function Home() {
                       fill
                       priority={index === 0}
                       sizes="100vw"
-                      className="object-cover object-center"
+                      className="object-cover object-center transition-transform duration-[1400ms] ease-out"
                     />
                   </div>
                 ))}
               </div>
 
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,20,38,0)_0%,rgba(8,20,38,0.18)_100%)]" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-32 bg-[linear-gradient(180deg,rgba(8,20,38,0)_0%,rgba(8,20,38,0.20)_100%)]" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-16 bg-[linear-gradient(90deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_100%)]" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-16 bg-[linear-gradient(270deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_100%)]" />
 
               <button
                 type="button"
@@ -996,7 +1014,7 @@ export default function Home() {
                     (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
                   )
                 }
-                className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:left-5 sm:h-12 sm:w-12"
+                className="absolute left-4 top-1/2 z-[3] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:left-5 sm:h-12 sm:w-12"
               >
                 <svg
                   aria-hidden="true"
@@ -1018,7 +1036,7 @@ export default function Home() {
                 type="button"
                 aria-label="Next slide"
                 onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
-                className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:right-5 sm:h-12 sm:w-12"
+                className="absolute right-4 top-1/2 z-[3] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:right-5 sm:h-12 sm:w-12"
               >
                 <svg
                   aria-hidden="true"
@@ -1036,8 +1054,8 @@ export default function Home() {
                 </svg>
               </button>
 
-              <div className="absolute inset-x-0 bottom-5 flex items-center justify-center">
-                <div className="flex items-center gap-2.5 rounded-full border border-white/22 bg-[#071528]/28 px-3 py-2 backdrop-blur-md">
+              <div className="absolute inset-x-0 bottom-5 z-[3] flex items-center justify-center">
+                <div className="flex items-center gap-2.5 rounded-full border border-white/22 bg-[#071528]/28 px-3 py-2 shadow-[0_16px_30px_rgba(8,21,40,0.16)] backdrop-blur-md">
                   {heroSlides.map((slide, index) => (
                     <button
                       key={slide.image}
@@ -1058,16 +1076,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        ref={legacyStatsRef}
-        className="bg-white px-2 py-18 sm:px-2.5 sm:py-24 lg:px-3 lg:py-28"
-      >
+      <section className="bg-white px-2 py-18 sm:px-2.5 sm:py-24 lg:px-3 lg:py-28">
         <div className="mx-auto w-full max-w-[1510px]">
           <div className="mx-auto max-w-[980px] text-center">
             <h2
               data-wave-reveal
               style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
-              className="wave-reveal-heading text-[34px] font-medium leading-[0.98] tracking-[-0.05em] text-black sm:text-[46px] lg:text-[60px]"
+              className="wave-reveal-heading text-[34px] font-medium leading-[1.08] tracking-[-0.05em] text-black sm:text-[46px] lg:text-[60px]"
             >
               <span className="font-semibold">An</span>{" "}
               <span className="font-light">Illustrious</span>{" "}
@@ -1076,7 +1091,10 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-5">
+          <div
+            ref={legacyStatsRef}
+            className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-5"
+          >
             {legacyStats.map((stat, index) => (
               <article
                 key={stat.label}
