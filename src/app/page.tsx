@@ -681,10 +681,10 @@ export default function Home() {
       >
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-0 origin-top transform-gpu border-b transition-[transform,opacity,box-shadow,background-color,backdrop-filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`pointer-events-none absolute inset-0 transform-gpu border-b transition-[clip-path,opacity,box-shadow,background-color,backdrop-filter] duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] ${
             headerIsSolid
-              ? "scale-y-100 border-[#e6dfd2] bg-white/98 opacity-100 shadow-[0_10px_40px_rgba(25,34,48,0.08)] backdrop-blur-md"
-              : "scale-y-0 border-transparent bg-white/0 opacity-0 shadow-none"
+              ? "border-[#e6dfd2] bg-white/96 opacity-100 shadow-[0_14px_40px_rgba(25,34,48,0.07)] backdrop-blur-xl [clip-path:inset(0_0_0_0_round_0px)]"
+              : "border-transparent bg-white/0 opacity-0 shadow-none [clip-path:inset(0_0_100%_0_round_0px)]"
           }`}
         />
         <div className="relative z-10 mx-auto w-full max-w-[1510px] px-2 sm:px-2.5 lg:px-3">
@@ -1145,7 +1145,7 @@ export default function Home() {
               <span className="block font-extrabold">
                 Educational Experience with peers
               </span>
-              <span className="block font-extrabold">from 68 countries</span>
+              <span className="block font-extrabold">from 26 states</span>
             </h2>
           </div>
 

@@ -7,6 +7,7 @@ import {
   Plus_Jakarta_Sans,
   Sora,
 } from "next/font/google";
+import { LenisProvider } from "@/components/lenis-provider";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -54,7 +55,10 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.variable} ${geistMono.variable} ${cinzel.variable} ${sora.variable} ${plusJakartaSans.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LenisProvider />
+        {children}
+      </body>
     </html>
   );
 }
