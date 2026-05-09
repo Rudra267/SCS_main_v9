@@ -19,51 +19,6 @@ const navLinks = [
   { label: "Contact", href: "/" },
 ];
 
-const heroSlides = [
-  {
-    image: "/hero-banners/home/1.jpeg",
-    eyebrow: "Founded in 1986",
-    titleLines: [
-      [{ text: "Sri Chaitanya", bold: false }],
-      [
-        { text: "built for", bold: false },
-        { text: " Ambition", bold: true },
-      ],
-      [
-        { text: "driven by", bold: false },
-        { text: " Scale", bold: true },
-      ],
-    ],
-    description:
-      "Official Sri Chaitanya materials trace the institution's beginnings to Vijayawada, where Dr. B.S. Rao and Dr. Jhansi Lakshmi Bai Boppana launched the first campus with a mission to widen access to quality education.",
-    highlights: ["Vijayawada roots", "Vision-led growth", "Student-first culture"],
-  },
-  {
-    image: "/hero-banners/home/2.jpeg",
-    eyebrow: "41 Years of Excellence",
-    titleLines: [
-      [{ text: "India's", bold: false }, { text: " Largest", bold: true }],
-      [{ text: "Academic", bold: false }, { text: " Network", bold: true }],
-      [{ text: "for Future Leaders", bold: false }],
-    ],
-    description:
-      "Sri Chaitanya's official admission pages highlight a national footprint with more than 9,50,000 students, 1,000+ schools and colleges, and presence across 26 states.",
-    highlights: ["9,50,000+ students", "1,000+ institutions", "26 states"],
-  },
-  {
-    image: "/hero-banners/home/5.jpeg",
-    eyebrow: "Performance & Outcomes",
-    titleLines: [
-      [{ text: "Research-led", bold: false }, { text: " Learning", bold: true }],
-      [{ text: "Focused on", bold: false }, { text: " Results", bold: true }],
-      [{ text: "and Student Growth", bold: false }],
-    ],
-    description:
-      "Official Sri Chaitanya pages also emphasize results-led positioning, including legacy claims around IIT and AIIMS outcomes, structured mentoring, and integrated preparation models.",
-    highlights: ["Structured mentoring", "Integrated learning", "Results-led identity"],
-  },
-];
-
 const announcementMessage =
   "Please be informed that all payment services will be temporarily blocked from Sunday (29-01-2026) to Monday (30-01-2026) due to scheduled maintenance and system upgrade activities. During this period, users may not be able to make online payments or access payment-related services.";
 
@@ -90,10 +45,28 @@ const legacyStats = [
     label: "International Faculty",
     description: "Global Academic Expertise",
   },
+];
+
+const legacyStatCardStyles = [
   {
-    value: "100000+",
-    label: "Alumni",
-    description: "Accomplished Alumni Across the Globe",
+    accent: "#379BD3",
+    soft: "rgba(55,155,211,0.12)",
+    border: "rgba(55,155,211,0.22)",
+  },
+  {
+    accent: "#2ECAAD",
+    soft: "rgba(46,202,173,0.12)",
+    border: "rgba(46,202,173,0.22)",
+  },
+  {
+    accent: "#819EF8",
+    soft: "rgba(129,158,248,0.12)",
+    border: "rgba(129,158,248,0.24)",
+  },
+  {
+    accent: "#8F76F8",
+    soft: "rgba(143,118,248,0.12)",
+    border: "rgba(143,118,248,0.24)",
   },
 ];
 
@@ -283,6 +256,42 @@ const featuredCities = [
   { name: "Aurangabad", image: "/admission-cities/aurangabad-city.webp" },
 ];
 
+const admissionBranchesByCity: Record<string, string[]> = {
+  Delhi: ["Delhi NCR Branch", "Rohini Branch", "Dwarka Branch"],
+  Gurugram: ["Sector 14 Branch", "DLF Phase Branch", "Sohna Road Branch"],
+  Hyderabad: ["Madhapur Branch", "Ameerpet Branch", "Kukatpally Branch"],
+  Indore: ["Vijay Nagar Branch", "Palasia Branch", "Bhawarkuan Branch"],
+  Jabalpur: ["Napier Town Branch", "Madan Mahal Branch", "Adhartal Branch"],
+  Jaipur: ["Malviya Nagar Branch", "Vaishali Nagar Branch", "Mansarovar Branch"],
+  Jodhpur: ["Ratanada Branch", "Paota Branch", "Shastri Nagar Branch"],
+  Mumbai: ["Andheri Branch", "Powai Branch", "Thane Branch"],
+  Pune: ["Kothrud Branch", "Wakad Branch", "Hadapsar Branch"],
+  Chennai: ["Anna Nagar Branch", "Velachery Branch", "OMR Branch"],
+  Kolkata: ["Salt Lake Branch", "New Town Branch", "Behala Branch"],
+  Bhopal: ["MP Nagar Branch", "Arera Colony Branch", "Kolar Road Branch"],
+  Nagpur: ["Dharampeth Branch", "Manish Nagar Branch", "Wardha Road Branch"],
+  Rohtak: ["Model Town Branch", "Sector 14 Branch", "Delhi Road Branch"],
+  Sonipat: ["Sector 15 Branch", "Murthal Road Branch", "Civil Lines Branch"],
+  Tumkur: ["Ashok Nagar Branch", "Sira Gate Branch", "Gubbi Branch"],
+  Ahmednagar: ["Savedi Branch", "Pipeline Road Branch", "MIDC Branch"],
+  Aurangabad: ["Cidco Branch", "Jalna Road Branch", "Beed Bypass Branch"],
+};
+
+const academicYearOptions = [
+  "2025-26",
+  "2026-27",
+  "2027-28",
+];
+
+const admissionsBannerSlides = [
+  { type: "image", src: "/hero-banners/home/1.jpeg", width: 1920, height: 500 },
+  { type: "image", src: "/hero-banners/home/2.jpeg", width: 1920, height: 500 },
+  { type: "image", src: "/hero-banners/home/3.jpeg", width: 1920, height: 500 },
+  { type: "image", src: "/hero-banners/home/4.jpeg", width: 1920, height: 500 },
+  { type: "image", src: "/hero-banners/home/5.jpeg", width: 1920, height: 501 },
+  { type: "video", src: "/hero-banners/home/hero.mp4" },
+] as const;
+
 const socialNewsItems = [
   {
     platform: "Instagram",
@@ -419,19 +428,29 @@ const footerSocialLinks = [
 
 export default function Home() {
   const legacyStatsRef = useRef<HTMLDivElement | null>(null);
-  const legacyStatsHasAnimatedRef = useRef(false);
   const featuredCitiesPerView = 7;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
     "About",
   );
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeStoryIndex, setActiveStoryIndex] = useState(2);
   const [activeWhyChooseIndex, setActiveWhyChooseIndex] = useState(0);
   const [activeAboutPillarIndex, setActiveAboutPillarIndex] = useState(1);
   const [featuredCityStartIndex, setFeaturedCityStartIndex] = useState(0);
+  const [admissionsBannerIndex, setAdmissionsBannerIndex] = useState(0);
   const [aboutPillarsIntroVisible, setAboutPillarsIntroVisible] = useState(false);
+  const [isAdmissionModalOpen, setIsAdmissionModalOpen] = useState(false);
+  const [isAdmissionModalClosing, setIsAdmissionModalClosing] = useState(false);
+  const [admissionForm, setAdmissionForm] = useState({
+    parentName: "",
+    countryCode: "91",
+    mobile: "",
+    email: "",
+    academicYear: academicYearOptions[1],
+    city: featuredCities[0].name,
+    branchName: admissionBranchesByCity[featuredCities[0].name][0],
+  });
   const [legacyStatsVisible, setLegacyStatsVisible] = useState(false);
   const [animatedLegacyCounts, setAnimatedLegacyCounts] = useState(
     legacyStatTargets.map(() => 0),
@@ -442,6 +461,8 @@ export default function Home() {
     (_, offset) =>
       featuredCities[(featuredCityStartIndex + offset) % featuredCities.length],
   );
+  const currentAdmissionsBannerSlide =
+    admissionsBannerSlides[admissionsBannerIndex];
 
   const handleFeaturedCityPrev = () => {
     setFeaturedCityStartIndex((prev) =>
@@ -453,8 +474,38 @@ export default function Home() {
     setFeaturedCityStartIndex((prev) => (prev + 1) % featuredCities.length);
   };
 
+  const handleOpenAdmissionModal = (cityName: string) => {
+    const cityBranches = admissionBranchesByCity[cityName] ?? [];
+
+    setIsAdmissionModalClosing(false);
+    setAdmissionForm((prev) => ({
+      ...prev,
+      city: cityName,
+      branchName: cityBranches[0] ?? "",
+    }));
+    setIsAdmissionModalOpen(true);
+  };
+
+  const handleCloseAdmissionModal = () => {
+    setIsAdmissionModalClosing(true);
+    window.setTimeout(() => {
+      setIsAdmissionModalOpen(false);
+      setIsAdmissionModalClosing(false);
+    }, 240);
+  };
+
+  const handleAdmissionFormChange = (
+    field: keyof typeof admissionForm,
+    value: string,
+  ) => {
+    setAdmissionForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const selectedCityBranches =
+    admissionBranchesByCity[admissionForm.city] ?? [];
+
   useEffect(() => {
-    if (!isMenuOpen) {
+    if (!isMenuOpen && !isAdmissionModalOpen) {
       document.body.style.overflow = "";
       return;
     }
@@ -464,7 +515,7 @@ export default function Home() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isMenuOpen]);
+  }, [isAdmissionModalOpen, isMenuOpen]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -478,19 +529,21 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-
-    return () => window.clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
       setAboutPillarsIntroVisible(true);
     });
 
     return () => window.cancelAnimationFrame(frameId);
+  }, []);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setAdmissionsBannerIndex(
+        (prev) => (prev + 1) % admissionsBannerSlides.length,
+      );
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
@@ -506,16 +559,19 @@ export default function Home() {
           return;
         }
 
-        if (!entry.isIntersecting || legacyStatsHasAnimatedRef.current) {
+        if (entry.intersectionRatio >= 0.35) {
+          setAnimatedLegacyCounts(legacyStatTargets.map(() => 0));
+          setLegacyStatsVisible(true);
           return;
         }
 
-        setLegacyStatsVisible(true);
-        legacyStatsHasAnimatedRef.current = true;
-        observer.disconnect();
+        if (entry.intersectionRatio <= 0.12) {
+          setLegacyStatsVisible(false);
+          setAnimatedLegacyCounts(legacyStatTargets.map(() => 0));
+        }
       },
       {
-        threshold: 0.35,
+        threshold: [0.12, 0.35],
         rootMargin: "0px 0px -4% 0px",
       },
     );
@@ -962,115 +1018,110 @@ export default function Home() {
         ) : null}
       </header>
 
-      <section className="relative overflow-hidden bg-transparent px-2 pb-6 pt-5 sm:px-2.5 sm:pb-7 sm:pt-7 lg:px-3 lg:pb-8 lg:pt-8">
-        <div className="pointer-events-none absolute left-[6%] top-10 h-40 w-40 rounded-full bg-[#40B9E9]/10 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-10 right-[7%] h-44 w-44 rounded-full bg-[#2ECAAD]/10 blur-3xl" />
-
-        <div className="relative mx-auto w-full max-w-[1860px] rounded-[34px] bg-[linear-gradient(135deg,#40B9E9_0%,#379BD3_52%,#2ECAAD_100%)] p-[1px] shadow-[0_24px_64px_rgba(17,34,68,0.12)]">
-          <div className="relative rounded-[33px] bg-[linear-gradient(180deg,rgba(255,255,255,0.82)_0%,rgba(244,252,255,0.68)_100%)] p-3 backdrop-blur-[3px] sm:p-4 lg:p-5">
-            <div className="pointer-events-none absolute left-5 top-5 h-16 w-16 rounded-[20px] border border-white/55 bg-white/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]" />
-            <div className="pointer-events-none absolute bottom-5 right-5 h-20 w-20 rounded-full border border-white/45 bg-[#2ECAAD]/12 blur-[1px]" />
-
-            <div className="relative overflow-hidden rounded-[30px] bg-[#eaf7fd] shadow-[0_24px_58px_rgba(17,34,68,0.12)]">
-              <div className="pointer-events-none absolute inset-x-5 top-0 z-10 h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.95)_18%,rgba(255,255,255,0.95)_82%,transparent_100%)]" />
-              <div className="pointer-events-none absolute left-6 top-6 z-10 h-3 w-20 rounded-full bg-white/70 shadow-[0_4px_12px_rgba(255,255,255,0.45)]" />
-              <div className="pointer-events-none absolute right-10 top-8 z-10 hidden h-10 w-10 rotate-12 rounded-[14px] border border-white/40 bg-white/18 md:block" />
-
-              <div className="pointer-events-none absolute inset-0 z-0">
-                <div className="absolute -left-10 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-[#40B9E9]/12 blur-3xl" />
-                <div className="absolute -right-10 top-1/3 h-36 w-36 rounded-full bg-[#2ECAAD]/10 blur-3xl" />
+      <section className="bg-white pt-[72px] sm:pt-[78px] lg:pt-[82px]">
+        <div className="relative w-full overflow-hidden">
+          <img
+            src="/header-new.png?v=20260508-1"
+            alt="Sri Chaitanya header banner"
+            loading="eager"
+            className="h-auto w-full"
+          />
+          <div className="absolute inset-0 z-[2] flex w-full items-start">
+            <div className="px-5 pt-[14%] sm:px-8 sm:pt-[13%] lg:px-12 lg:pt-[12%] xl:px-16 xl:pt-[10.5%]">
+              <div className="ml-4 max-w-[560px] sm:ml-8 lg:ml-12 xl:ml-42 xl:max-w-[640px]">
+                <h1
+                  style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+                  className="max-w-[620px] text-[25px] font-light leading-[0.98] tracking-[-0.06em] text-[#071528] sm:text-[50px] lg:text-[60px] xl:text-[60px]"
+                >
+                  Shaping bright
+                  <span className="block font-extrabold text-[#071528]">
+                    futures with
+                  </span>
+                  <span className="block font-extrabold text-[#071528]">
+                    academic excellence
+                  </span>
+                </h1>
+                <p className="mt-6 max-w-[520px] text-[14px] leading-7 text-[#304256] sm:text-[16px] lg:text-[18px]">
+                  Discover a nurturing learning environment designed to help
+                  every student grow with confidence, discipline, and purpose.
+                </p>
+                <Link
+                  href="/"
+                  className="group relative mt-8 inline-flex min-h-[54px] min-w-[196px] items-center justify-center overflow-hidden rounded-[6px] bg-[#40B9E9] px-8 py-4 text-[14px] font-extrabold uppercase leading-none tracking-[0.04em] !text-white shadow-[0_14px_28px_rgba(64,185,233,0.26)] transition-transform duration-300 ease-out hover:-translate-y-0.5"
+                >
+                  <span className="absolute inset-0 bg-black/55 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [transform-origin:left_center] scale-x-0 group-hover:scale-x-100" />
+                  <span className="relative z-10 inline-flex items-center gap-4">
+                    <span>Admission For 2026-2027</span>
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      <path
+                        d="M3.75 10h12.5M11.25 5.5 16.25 10l-5 4.5"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div
-                className="relative z-[1] flex aspect-[1904/628] w-full transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {heroSlides.map((slide, index) => (
-                  <div
-                    key={slide.image}
-                    className="relative h-full w-full shrink-0"
-                  >
-                    <Image
-                      src={slide.image}
-                      alt={`Sri Chaitanya banner ${index + 1}`}
-                      fill
-                      priority={index === 0}
-                      sizes="100vw"
-                      className="object-cover object-center transition-transform duration-[1400ms] ease-out"
+      <section className="bg-white px-2 pb-4 pt-8 sm:px-2.5 sm:pb-6 sm:pt-10 lg:px-3 lg:pb-8 lg:pt-12">
+        <div className="mx-auto w-full max-w-[1320px]">
+          <div className="relative overflow-hidden rounded-[28px] border border-transparent bg-transparent px-0 py-4 shadow-none sm:px-0 sm:py-5 lg:px-0 lg:py-6">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(55,155,211,0.05)_0%,rgba(255,255,255,0)_34%,rgba(143,118,248,0.05)_100%)]" />
+            <div className="pointer-events-none absolute -left-10 top-0 h-full w-[38%] skew-x-[-24deg] bg-white/55" />
+            <div className="pointer-events-none absolute right-[18%] top-0 h-full w-[20%] skew-x-[-24deg] bg-white/35" />
+
+            <div className="relative w-full">
+              <div className="relative overflow-hidden rounded-[24px] border border-white/70 bg-[#f7fbff] shadow-[0_18px_42px_rgba(17,34,68,0.10)]">
+                {currentAdmissionsBannerSlide.type === "image" ? (
+                  <Image
+                    src={currentAdmissionsBannerSlide.src}
+                    alt={`Admissions banner ${admissionsBannerIndex + 1}`}
+                    width={currentAdmissionsBannerSlide.width}
+                    height={currentAdmissionsBannerSlide.height}
+                    sizes="100vw"
+                    className="h-auto w-full"
+                  />
+                ) : (
+                  <div className="h-[260px] w-full sm:h-[340px] lg:h-[440px]">
+                    <video
+                      src={currentAdmissionsBannerSlide.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                ))}
+                )}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(7,21,40,0.12)_100%)]" />
               </div>
+            </div>
 
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-32 bg-[linear-gradient(180deg,rgba(8,20,38,0)_0%,rgba(8,20,38,0.20)_100%)]" />
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-16 bg-[linear-gradient(90deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_100%)]" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-16 bg-[linear-gradient(270deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_100%)]" />
-
-              <button
-                type="button"
-                aria-label="Previous slide"
-                onClick={() =>
-                  setCurrentSlide(
-                    (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
-                  )
-                }
-                className="absolute left-4 top-1/2 z-[3] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:left-5 sm:h-12 sm:w-12"
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  className="h-5 w-5"
-                >
-                  <path
-                    d="M11.75 4.75 6.5 10l5.25 5.25"
-                    stroke="currentColor"
-                    strokeWidth="1.9"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-
-              <button
-                type="button"
-                aria-label="Next slide"
-                onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
-                className="absolute right-4 top-1/2 z-[3] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/18 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/28 sm:right-5 sm:h-12 sm:w-12"
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  className="h-5 w-5"
-                >
-                  <path
-                    d="M8.25 4.75 13.5 10l-5.25 5.25"
-                    stroke="currentColor"
-                    strokeWidth="1.9"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-
-              <div className="absolute inset-x-0 bottom-5 z-[3] flex items-center justify-center">
-                <div className="flex items-center gap-2.5 rounded-full border border-white/22 bg-[#071528]/28 px-3 py-2 shadow-[0_16px_30px_rgba(8,21,40,0.16)] backdrop-blur-md">
-                  {heroSlides.map((slide, index) => (
-                    <button
-                      key={slide.image}
-                      type="button"
-                      aria-label={`Go to slide ${index + 1}`}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`rounded-full transition-all duration-300 ${
-                        index === currentSlide
-                          ? "h-[8px] w-14 bg-white shadow-[0_8px_18px_rgba(255,255,255,0.4)]"
-                          : "h-[8px] w-[22px] bg-white/45 hover:bg-white/75"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
+            <div className="relative mt-5 flex items-center justify-center gap-3">
+              {admissionsBannerSlides.map((slide, index) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  aria-label={`Go to banner slide ${index + 1}`}
+                  onClick={() => setAdmissionsBannerIndex(index)}
+                  className={`rounded-full transition-all duration-300 ${
+                    index === admissionsBannerIndex
+                      ? "h-[6px] w-7 bg-[#ef4444]"
+                      : "h-[6px] w-[6px] bg-[#d1d5db]"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -1093,29 +1144,56 @@ export default function Home() {
 
           <div
             ref={legacyStatsRef}
-            className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-5"
+            className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-4"
           >
             {legacyStats.map((stat, index) => (
               <article
                 key={stat.label}
-                className={`max-w-[250px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                style={{
+                  background: `linear-gradient(180deg, ${legacyStatCardStyles[index % legacyStatCardStyles.length].soft} 0%, rgba(255,255,255,0.98) 100%)`,
+                  borderColor:
+                    legacyStatCardStyles[index % legacyStatCardStyles.length].border,
+                  transitionDelay: `${index * 90}ms`,
+                }}
+                className={`flex h-full max-w-[270px] flex-col rounded-[24px] border px-6 pb-7 pt-6 shadow-[0_18px_36px_rgba(17,34,68,0.08)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_24px_44px_rgba(17,34,68,0.12)] ${
                   legacyStatsVisible
                     ? "translate-y-0 opacity-100"
                     : "translate-y-8 opacity-0"
                 }`}
-                style={{ transitionDelay: `${index * 90}ms` }}
               >
                 <p
                   style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
-                  className="text-[48px] font-extrabold leading-none tracking-[-0.05em] text-[#40B9E9] sm:text-[56px]"
+                  className="text-[48px] font-extrabold leading-none tracking-[-0.05em] sm:text-[56px]"
                 >
-                  {`${animatedLegacyCounts[index]}+`}
+                  <span
+                    style={{
+                      color:
+                        legacyStatCardStyles[index % legacyStatCardStyles.length]
+                          .accent,
+                    }}
+                  >
+                    {`${animatedLegacyCounts[index]}+`}
+                  </span>
                 </p>
-                <h3 className="mt-2 text-[17px] font-extrabold uppercase tracking-[-0.02em] text-black">
+                <h3
+                  style={{
+                    color:
+                      legacyStatCardStyles[index % legacyStatCardStyles.length]
+                        .accent,
+                  }}
+                  className="mt-4 min-h-[40px] max-w-[210px] text-[12px] font-bold uppercase leading-[1.35] tracking-[0.14em]"
+                >
                   {stat.label}
                 </h3>
-                <div className="mt-5 h-px w-10 bg-black" />
-                <p className="mt-4 max-w-[220px] text-[15px] leading-6 text-[#282828]">
+                <div
+                  style={{
+                    backgroundColor:
+                      legacyStatCardStyles[index % legacyStatCardStyles.length]
+                        .accent,
+                  }}
+                  className="mt-4 h-[3px] w-12 rounded-full"
+                />
+                <p className="mt-5 max-w-[220px] text-[15px] leading-6 text-[#282828]">
                   {stat.description}
                 </p>
               </article>
@@ -1150,9 +1228,11 @@ export default function Home() {
 
               <div className="grid min-w-0 flex-1 gap-4 sm:grid-cols-3 xl:grid-cols-7">
                 {visibleFeaturedCities.map((city, index) => (
-                  <article
+                  <button
+                    type="button"
                     key={`${city.name}-${featuredCityStartIndex}-${index}`}
-                    className="text-center"
+                    onClick={() => handleOpenAdmissionModal(city.name)}
+                    className="text-center transition-transform duration-300 hover:-translate-y-1"
                   >
                     <div className="relative mx-auto h-[96px] w-[116px] overflow-hidden rounded-[16px] bg-[#379BD3] shadow-[0_12px_26px_rgba(34,43,64,0.12)]">
                       <Image
@@ -1167,7 +1247,7 @@ export default function Home() {
                     <p className="mt-3 text-[16px] font-semibold text-[#1f2734]">
                       {city.name}
                     </p>
-                  </article>
+                  </button>
                 ))}
               </div>
 
@@ -1302,6 +1382,199 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {isAdmissionModalOpen ? (
+        <div
+          className={`fixed inset-0 z-[80] flex items-center justify-center px-4 py-6 backdrop-blur-[4px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isAdmissionModalClosing
+              ? "bg-[#071528]/0 opacity-0"
+              : "bg-[#071528]/58 opacity-100"
+          }`}
+        >
+          <div
+            className={`relative w-full max-w-[980px] overflow-hidden rounded-[28px] bg-white shadow-[0_28px_90px_rgba(7,21,40,0.28)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isAdmissionModalClosing
+                ? "translate-y-6 scale-[0.94] opacity-0"
+                : "translate-y-0 scale-100 opacity-100"
+            }`}
+          >
+            <button
+              type="button"
+              aria-label="Close admission form"
+              onClick={handleCloseAdmissionModal}
+              className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#d9e1ea] bg-white text-[#1f2734] transition-colors hover:bg-[#f4f8fb]"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                fill="none"
+                className="h-5 w-5"
+              >
+                <path
+                  d="m6 6 8 8M14 6l-8 8"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+
+            <div
+              className={`border-b border-[#e9eef3] px-6 py-6 text-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-8 ${
+                isAdmissionModalClosing
+                  ? "translate-y-2 opacity-0"
+                  : "translate-y-0 opacity-100 delay-75"
+              }`}
+            >
+              <h3
+                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+                className="text-[28px] font-medium tracking-[-0.03em] text-[#1f2734]"
+              >
+                Admissions open
+              </h3>
+              <p className="mt-2 text-[14px] text-[#5a6573]">
+                Enquire for admission details in {admissionForm.city}.
+              </p>
+            </div>
+
+            <form
+              onSubmit={(event) => event.preventDefault()}
+              className={`grid gap-5 px-6 py-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:grid-cols-2 sm:px-8 sm:py-8 ${
+                isAdmissionModalClosing
+                  ? "translate-y-3 opacity-0"
+                  : "translate-y-0 opacity-100 delay-150"
+              }`}
+            >
+              <label className="block">
+                <span className="mb-2 block text-[15px] font-medium text-[#435064]">
+                  Parent Name*
+                </span>
+                <input
+                  type="text"
+                  value={admissionForm.parentName}
+                  onChange={(event) =>
+                    handleAdmissionFormChange("parentName", event.target.value)
+                  }
+                  className="h-12 w-full rounded-[16px] border border-[#d4dde8] px-4 text-[15px] text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                />
+              </label>
+
+              <div className="block">
+                <span className="mb-2 block text-[15px] font-medium text-[#435064]">
+                  Mobile*
+                </span>
+                <div className="grid grid-cols-[108px_minmax(0,1fr)] gap-3">
+                  <input
+                    type="text"
+                    value={admissionForm.countryCode}
+                    onChange={(event) =>
+                      handleAdmissionFormChange("countryCode", event.target.value)
+                    }
+                    className="h-12 rounded-[16px] border border-[#d4dde8] px-4 text-[15px] text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Mobile No"
+                    value={admissionForm.mobile}
+                    onChange={(event) =>
+                      handleAdmissionFormChange("mobile", event.target.value)
+                    }
+                    className="h-12 rounded-[16px] border border-[#d4dde8] px-4 text-[15px] text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                  />
+                </div>
+              </div>
+
+              <label className="block">
+                <span className="mb-2 block text-[15px] font-medium text-[#435064]">
+                  Email ID
+                </span>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={admissionForm.email}
+                  onChange={(event) =>
+                    handleAdmissionFormChange("email", event.target.value)
+                  }
+                  className="h-12 w-full rounded-[16px] border border-[#d4dde8] px-4 text-[15px] text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-[15px] font-medium text-[#435064]">
+                  Academic Year*
+                </span>
+                <select
+                  value={admissionForm.academicYear}
+                  onChange={(event) =>
+                    handleAdmissionFormChange("academicYear", event.target.value)
+                  }
+                  className="h-12 w-full rounded-[16px] border border-[#d4dde8] bg-white px-4 text-[15px] font-medium text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                >
+                  {academicYearOptions.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-[15px] font-medium text-[#435064]">
+                  City*
+                </span>
+                <select
+                  value={admissionForm.city}
+                  onChange={(event) => {
+                    const nextCity = event.target.value;
+                    const nextBranches = admissionBranchesByCity[nextCity] ?? [];
+
+                    setAdmissionForm((prev) => ({
+                      ...prev,
+                      city: nextCity,
+                      branchName: nextBranches[0] ?? "",
+                    }));
+                  }}
+                  className="h-12 w-full rounded-[16px] border border-[#d4dde8] bg-white px-4 text-[15px] font-medium text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                >
+                  {featuredCities.map((city) => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-[15px] font-medium text-[#435064]">
+                  Branch Name*
+                </span>
+                <select
+                  value={admissionForm.branchName}
+                  onChange={(event) =>
+                    handleAdmissionFormChange("branchName", event.target.value)
+                  }
+                  className="h-12 w-full rounded-[16px] border border-[#d4dde8] bg-white px-4 text-[15px] font-medium text-[#1f2734] outline-none transition-colors focus:border-[#40B9E9]"
+                >
+                  {selectedCityBranches.map((branch) => (
+                    <option key={branch} value={branch}>
+                      {branch}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <div className="sm:col-span-2 flex justify-end pt-2">
+                <button
+                  type="submit"
+                  className="inline-flex min-h-[54px] min-w-[220px] items-center justify-center rounded-[14px] bg-[#b0002b] px-8 text-[18px] font-bold text-white transition-colors duration-300 hover:bg-[#950024]"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
 
       <section className="bg-[linear-gradient(135deg,#40B9E9_0%,#379BD3_58%,#2ECAAD_100%)] px-2 py-16 text-white sm:px-2.5 sm:py-20 lg:px-3 lg:py-24">
         <div className="mx-auto w-full max-w-[1510px]">
@@ -1926,7 +2199,7 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,transparent_0%,#40B9E9_18%,#2ECAAD_82%,transparent_100%)]" />
 
         <div className="mx-auto w-full max-w-[1510px] px-5 pt-16 sm:px-8 sm:pt-18 lg:px-10 lg:pt-20">
-          <div className="grid gap-10 xl:grid-cols-[1.28fr_0.82fr_0.92fr_0.82fr]">
+          <div className="grid gap-10 xl:grid-cols-[1.55fr_0.72fr_0.82fr_0.72fr]">
             <div className="w-full max-w-none">
               <div className="flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#379BD3] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.05)]">
